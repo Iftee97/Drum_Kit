@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+
+    <style>
+        body {
+            text-align: center;
+            background-color: #283149;
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: #DBEDF3;
+            font-family: "Arvo", cursive;
+            text-shadow: 3px 0 #DA0463;
+
+        }
+
+        footer {
+            color: #DBEDF3;
+            font-family: sans-serif;
+        }
+
+        .w {
+            background-image: url("tom1.png");
+        }
+
+        .a {
+            background-image: url("tom2.png");
+        }
+
+        .s {
+            background-image: url("tom3.png");
+        }
+
+        .d {
+            background-image: url("tom4.png");
+        }
+
+        .j {
+            background-image: url("snare.png");
+        }
+
+        .k {      background-image: url("crash.png");
+        }
+
+        .l {
+            background-image: url("kick.png");
+        }
+
+        .set {
+            margin: 10% auto;
+        }
+
+        .game-over {
+            background-color: red;
+            opacity: 0.8;
+        }
+
+        .pressed {
+            box-shadow: 0 3px 4px 0 #DBEDF3;
+            opacity: 0.5;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .drum {
+            outline: none;
+            border: 10px solid #404B69;
+            font-size: 5rem;
+            font-family: 'Arvo', cursive;
+            line-height: 2;
+            font-weight: 900;
+            color: #DA0463;
+            text-shadow: 3px 0 #DBEDF3;
+            border-radius: 15px;
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            margin: 10px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">Drum 🥁 Kit</h1>
+    <div class="set">
+        <button class="w drum">w</button>
+        <button class="a drum">a</button>
+        <button class="s drum">s</button>
+        <button class="d drum">d</button>
+        <button class="j drum">j</button>
+        <button class="k drum">k</button>
+        <button class="l drum">l</button>
+    </div>
+
+
+    <footer>
+        Made with ❤️
+    </footer>
+
+    <!-- ------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------- -->
+
+    <script>
+        let buttons = document.querySelectorAll('button');
+        for (let btn of buttons) {
+            btn.addEventListener("click", function handleClick() {
+                let buttonInnerHTML = btn.innerHTML;
+                makeSound(buttonInnerHTML);
+                buttonAnimation(buttonInnerHTML);
+            });
+        }
+
+        document.addEventListener("keydown", function(event) {
+                makeSound(event.key);
+                buttonAnimation(event.key);
+        });
+
+        function makeSound(key) {
+            if (key === "w") {
+                    var tom1 = new Audio("tom-1.mp3");
+                    tom1.play();
+                } else if (key === "a") {
+                    var tom2 = new Audio("tom-2.mp3");
+                    tom2.play();
+                } else if (key === "s") {
+                    var tom3 = new Audio("tom-3.mp3");
+                    tom3.play();
+                } else if (key === "d") {
+                    var tom4 = new Audio("tom-4.mp3");
+                    tom4.play();
+                } else if (key === "j") {
+                    var snare = new Audio("snare.mp3");
+                    snare.play();
+                } else if (key === "k") {
+                    var crash = new Audio("crash.mp3");
+                    crash.play();
+                } else if (key === "l") {
+                    var kick_bass = new Audio("kick-bass.mp3");
+                    kick_bass.play();
+                }
+        }
+
+        function buttonAnimation(currentKey) {
+            let activeButton = document.querySelector("." + currentKey);
+            activeButton.classList.add("pressed");
+            
+            setTimeout(function() {
+                activeButton.classList.remove("pressed");  
+            }, 100);
+        } 
+    </script>
+</body>
+
+</html>
+
+<!-- keydown -->
